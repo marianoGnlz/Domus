@@ -1,4 +1,4 @@
-﻿@model Domus.Models.Cita
+﻿@model Domus.ViewModels.CitaView
 
 @{
     ViewData["Title"] = "Create";
@@ -10,25 +10,79 @@
 <h4>Cita</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Hora" class="control-label"></label>
-                <input asp-for="Hora" class="form-control" />
-                <span asp-validation-for="Hora" class="text-danger"></span>
+    <div class="col-5">
+        <form asp-action="BuscarCliente" class="row row-cols-lg-auto g-3 align-items-center">
+            <div class="col">
+                <input asp-for="Cliente.DNI" class="form-control" placeholder="Buscar por DNI"/>
             </div>
-            <div class="form-group">
-                <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" />
-                <span asp-validation-for="Fecha" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="col">
+                <input type="submit" value="Buscar Cliente" class="btn btn-primary" />
             </div>
         </form>
     </div>
+    @if(Model?.Cliente != null)
+    {
+        <div class="col-5">
+            <form asp-action="BuscarFecha" class="row row-cols-lg-auto g-3 align-items-center">
+                <input asp-for="Cliente.DNI" hidden />
+                <div class="col">
+                    <input asp-for="FechaBuscada" type="date" class="form-control" placeholder="Buscar por DNI"/>
+                </div>
+                <div class="col">
+                    <input type="submit" value="Agregar Fecha" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    }
 </div>
+@if(Model?.Cliente != null)
+{
+    <h4>Cliente</h4>
+    <hr />
+    <div class="row">
+                <div class="col-2">
+                        <label asp-for="Cliente.Nombre" class="control-label"></label>
+                        <input asp-for="Cliente.Nombre" class="form-control" />
+                    </div>
+                    <div class="col-2">
+                        <label asp-for="Cliente.Apellido" class="control-label"></label>
+                        <input asp-for="Cliente.Apellido" class="form-control" />
+                    </div>
+                    <div class="col-2">
+                        <label asp-for="Cliente.CUIL" class="control-label"></label>
+                        <input asp-for="Cliente.CUIL" class="form-control" />
+                    </div>
+                    <div class="col-2">
+                        <label asp-for="Cliente.DNI" class="control-label"></label>
+                        <input asp-for="Cliente.DNI" class="form-control" />
+                    </div>
+                    <div class="col-3">
+                        <label asp-for="Cliente.Email" class="control-label"></label>
+                        <input asp-for="Cliente.Email" class="form-control" />
+                    </div>
+    </div>
+    <hr />
+}
+
+@if(Model?.FechaBuscada != null)
+{
+    <h4>Fecha y horarios</h4>
+    <hr />
+    <div class="row">
+        <div class="col">
+                <div class="col-2">
+                        <label asp-for="FechaBuscada" class="control-label"></label>
+                        <input asp-for="FechaBuscada" class="form-control" />
+                    </div>
+                    <ul>
+                        @foreach(var item in Model.Horarios) {
+                            <li>@item.Horario</li>
+                        }
+                    </ul>
+        </div>
+    </div>
+    <hr />
+}
 
 <div>
     <a asp-action="Index">Back to List</a>

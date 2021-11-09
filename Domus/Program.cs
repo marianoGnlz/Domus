@@ -1,6 +1,3 @@
-using Domus.Models;
-using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
 const string MiCors = "TPI2021Cors";
 
@@ -19,6 +16,11 @@ builder.Services.AddCors(
                 }
             )
     );
+builder.Services.AddScoped<ICalendarioService, CalendarioService>();
+builder.Services.AddScoped<ICitaService, CitaService>();
+builder.Services.AddScoped<IClientesService, ClientesService>();
+builder.Services.AddScoped<IEmpleadoService, EmpleadoService>();
+
 
 var app = builder.Build();
 

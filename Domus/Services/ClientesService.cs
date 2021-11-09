@@ -75,5 +75,20 @@ namespace Domus.Services
         {
             throw new NotImplementedException();
         }
+
+        public Request<Cliente> GetClienteByDNI(string dni)
+        {
+            Request<Cliente> req = new();
+            try
+            {
+                req.Data = _context.Clientes.FirstOrDefault(x => x.DNI == dni);
+            }
+            catch (Exception ex)
+            {
+                req.Message = ex.Message;
+                req.Success = false;
+            }
+            return req;
+        }
     }
 }

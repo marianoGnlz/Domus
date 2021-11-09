@@ -10,6 +10,7 @@ namespace Domus.IServices
     {
         Request<IList<Cliente>> GetClientes();
         Request<Cliente> GetCliente(int id);
+        Request<Cliente> GetClienteByDNI(string dni);
         Request<Cliente> Save(Cliente cliente);
         Request<Cliente> Delete(int id);
         Request<Cliente> Update(Cliente cliente);
