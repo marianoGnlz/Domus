@@ -72,12 +72,19 @@
         <div class="col">
                 <div class="col-2">
                         <label asp-for="FechaBuscada" class="control-label"></label>
-                        <input asp-for="FechaBuscada" class="form-control" />
+                        <input asp-for="FechaBuscada" class="form-control" disabled/>
                     </div>
                     <ul>
-                        @foreach(var item in Model.Horarios) {
-                            <li>@item.Horario</li>
-                        }
+                        <div class="row">
+                            @foreach(var item in Model.Horarios) {
+                                <div class="col">
+                                    <label for="@item.IdHorarios" class="form-check-label" >
+                                        @Html.RadioButtonFor(x => x.HoraSeleccionada, item.Horario, !item.Disponible? new { @disabled = true, @id = @$"{@item.IdHorarios}" } : new {@id = @$"{@item.IdHorarios}"})
+                                        @(string.Format("{0:00}:{1:00}", item.Horario.Hours, item.Horario.Minutes))
+                                        </label>
+                                   </div>
+                            }
+                        </div>
                     </ul>
         </div>
     </div>

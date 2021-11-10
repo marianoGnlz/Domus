@@ -209,6 +209,9 @@ namespace Domus.Migrations
                     b.Property<int?>("CalendarioIdCalendario")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Disponible")
+                        .HasColumnType("bit");
+
                     b.Property<TimeSpan>("Horario")
                         .HasColumnType("time");
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domus.Migrations
 {
     [DbContext(typeof(TPIContext))]
-    [Migration("20211109184047_First")]
-    partial class First
+    [Migration("20211109233102_prueba")]
+    partial class prueba
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -210,6 +210,9 @@ namespace Domus.Migrations
 
                     b.Property<int?>("CalendarioIdCalendario")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Disponible")
+                        .HasColumnType("bit");
 
                     b.Property<TimeSpan>("Horario")
                         .HasColumnType("time");
