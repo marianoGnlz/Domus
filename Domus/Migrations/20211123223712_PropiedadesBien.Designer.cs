@@ -4,6 +4,7 @@ using Domus.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domus.Migrations
 {
     [DbContext(typeof(TPIContext))]
-    partial class TPIContextModelSnapshot : ModelSnapshot
+    [Migration("20211123223712_PropiedadesBien")]
+    partial class PropiedadesBien
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,11 +47,16 @@ namespace Domus.Migrations
                     b.Property<int>("NroCuenta")
                         .HasColumnType("int");
 
+                    b.Property<int>("PropiedadIdPropiedad")
+                        .HasColumnType("int");
+
                     b.Property<string>("RazonSocial")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdCliente");
+
+                    b.HasIndex("PropiedadIdPropiedad");
 
                     b.ToTable("Corporativos");
                 });
@@ -88,13 +95,78 @@ namespace Domus.Migrations
                     b.Property<int>("NroCuenta")
                         .HasColumnType("int");
 
+                    b.Property<int>("PropiedadIdPropiedad")
+                        .HasColumnType("int");
+
                     b.Property<string>("Telefono")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdCliente");
 
+                    b.HasIndex("PropiedadIdPropiedad");
+
                     b.ToTable("Particulares");
+                });
+
+            modelBuilder.Entity("Domus.Models.Propiedad", b =>
+                {
+                    b.Property<int>("IdPropiedad")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPropiedad"), 1L, 1);
+
+                    b.Property<int>("Antiguedad")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Artefactos")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CantBanios")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CantHabitaciones")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Espacios")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Servicios")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdPropiedad");
+
+                    b.ToTable("Propiedades");
+                });
+
+            modelBuilder.Entity("Domus.Models.Corporativo", b =>
+                {
+                    b.HasOne("Domus.Models.Propiedad", "Propiedad")
+                        .WithMany()
+                        .HasForeignKey("PropiedadIdPropiedad")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Propiedad");
+                });
+
+            modelBuilder.Entity("Domus.Models.Particular", b =>
+                {
+                    b.HasOne("Domus.Models.Propiedad", "Propiedad")
+                        .WithMany()
+                        .HasForeignKey("PropiedadIdPropiedad")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Propiedad");
                 });
 #pragma warning restore 612, 618
         }

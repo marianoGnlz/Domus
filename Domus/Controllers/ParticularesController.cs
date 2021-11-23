@@ -53,7 +53,7 @@ namespace Domus.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nombre,Apellido,DNI,CUIL,FechaDeNacimiento,Telefono,Email,IdCliente,NroCuenta")] Particular particular)
+        public async Task<IActionResult> Create([FromForm] Particular particular)
         {
             if (ModelState.IsValid)
             {

@@ -18,9 +18,7 @@ namespace Domus.Models
         }
 
         public virtual DbSet<Corporativo> Corporativos { get; set; }
-        public virtual DbSet<Documentacion> Documentaciones { get; set; }
         public virtual DbSet<Particular> Particulares { get; set; }
-        public virtual DbSet<Propiedad> Propiedades { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
