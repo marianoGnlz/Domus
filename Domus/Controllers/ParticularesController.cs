@@ -9,6 +9,7 @@ using Domus.Models;
 
 namespace Domus.Controllers
 {
+    [Authorize]
     public class ParticularesController : Controller
     {
         private readonly TPIContext _context;
