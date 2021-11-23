@@ -17,15 +17,15 @@ namespace Domus.Models
         {
         }
 
-        public virtual DbSet<Agenda> Agendas { get; set; }
-        public virtual DbSet<Calendario> Calendario { get; set; }
-        public virtual DbSet<Cliente> Clientes { get; set; }
-        public virtual DbSet<Empleado> Empleados { get; set; }
-        public virtual DbSet<Horarios> Horarios { get; set; }
-
+        public virtual DbSet<Corporativo> Corporativos { get; set; }
+        public virtual DbSet<Documentacion> Documentaciones { get; set; }
+        public virtual DbSet<Particular> Particulares { get; set; }
+        public virtual DbSet<Propiedad> Propiedades { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
+            if (!optionsBuilder.IsConfigured)
+            {
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,6 +35,5 @@ namespace Domus.Models
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
-        public DbSet<Domus.Models.Cita> Cita { get; set; }
     }
 }

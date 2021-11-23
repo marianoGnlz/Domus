@@ -16,10 +16,6 @@ builder.Services.AddCors(
                 }
             )
     );
-builder.Services.AddScoped<ICalendarioService, CalendarioService>();
-builder.Services.AddScoped<ICitaService, CitaService>();
-builder.Services.AddScoped<IClientesService, ClientesService>();
-builder.Services.AddScoped<IEmpleadoService, EmpleadoService>();
 
 
 var app = builder.Build();
@@ -37,6 +33,7 @@ app.UseCors(options =>
                     .WithMethods("GET", "POST", "DELETE")
                     .AllowAnyHeader()
                     );
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
