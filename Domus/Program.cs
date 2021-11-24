@@ -1,3 +1,8 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Domus.Data;
+using Domus.Areas.Identity.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 const string MiCors = "TPI2021Cors";
 
@@ -7,6 +12,24 @@ builder.Services.AddDbContext<TPIContext>(
     options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
     );
+builder.Services.AddDefaultIdentity<DomusUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<DomusContext>();
+builder.Services.AddDbContext<DomusContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddRazorPages();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    // Password settings.
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 6;
+
+});
+
+
 builder.Services.AddCors(
     option => 
         option.AddPolicy(name: MiCors,
@@ -45,5 +68,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapRazorPages();
 
 app.Run();
