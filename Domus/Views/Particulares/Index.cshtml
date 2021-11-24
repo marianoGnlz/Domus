@@ -33,7 +33,7 @@
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NroCuenta)
+                @Html.DisplayNameFor(model => model.TipoCliente)
             </th>
             <th></th>
         </tr>
@@ -63,7 +63,13 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NroCuenta)
+                @if(item.TipoCliente == TipoCliente.Locador)
+                {
+                    <p>Locador</p>
+                } else
+                {
+                    <p>Locatario</p>
+                }
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdCliente" name="@(item.IdCliente)Edit">

@@ -54,7 +54,7 @@ namespace Domus.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Domicilio,Nacionalidad,RazonSocial,CUIT,IdCliente,NroCuenta")] Corporativo corporativo)
+        public async Task<IActionResult> Create([FromForm] Corporativo corporativo)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Domus.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Domicilio,Nacionalidad,RazonSocial,CUIT,IdCliente,NroCuenta")] Corporativo corporativo)
+        public async Task<IActionResult> Edit(int id, [FromForm] Corporativo corporativo)
         {
             if (id != corporativo.IdCliente)
             {

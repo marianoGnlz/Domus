@@ -37,10 +37,16 @@
             @Html.DisplayFor(model => model.CUIT)
         </dd>
         <dt class = "col-sm-1">
-            @Html.DisplayNameFor(model => model.NroCuenta)
+            @Html.DisplayNameFor(model => model.TipoCliente)
         </dt>
         <dd class = "col-sm-2">
-            @Html.DisplayFor(model => model.NroCuenta)
+            @if(Model.TipoCliente == TipoCliente.Locador)
+            {
+                <p>Locador</p>
+            } else
+            {
+                <p>Locatario</p>
+            }
         </dd>
     </dl>
 </div>

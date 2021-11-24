@@ -86,7 +86,7 @@ namespace Domus.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Nombre,Apellido,DNI,CUIL,FechaDeNacimiento,Telefono,Email,IdCliente,NroCuenta")] Particular particular)
+        public async Task<IActionResult> Edit(int id, [FromForm] Particular particular)
         {
             if (id != particular.IdCliente)
             {

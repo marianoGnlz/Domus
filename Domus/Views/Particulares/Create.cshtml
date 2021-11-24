@@ -71,9 +71,13 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="NroCuenta" class="control-label"></label>
-                                <input asp-for="NroCuenta" class="form-control" id="nroCuenta" />
-                                <span asp-validation-for="NroCuenta" class="text-danger"></span>
+                                <label asp-for="TipoCliente" class="control-label"></label>
+                                <select asp-for="TipoCliente" class="form-control">
+                                    <option value="" disabled hidden selected>Seleccione un tipo de cliente</option>
+                                    <option value="1">Locador</option>
+                                    <option value="2">Locatario</option>
+                                </select>
+                                <span asp-validation-for="TipoCliente" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
